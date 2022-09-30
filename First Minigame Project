@@ -1,0 +1,226 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int comando,agarrao,chute,soco,vida1,vida2,command1,danoRes;
+
+void soco1(int socador)
+{
+    if (socador == 0)
+    {
+        danoRes = soco - rand() % 15;
+        vida1 -= danoRes;
+        if (vida1 <= 0)
+        {
+            vida1 = 0;
+        }
+        printf("\nVoce deu um soco. O inimigo perde %d",danoRes);
+        printf(" de vida. A vida atual do inimigo e: %d",vida1);
+    }
+    else if (socador == 1)
+    {
+        danoRes = soco - rand() % 15;
+        vida2 -= danoRes;
+        if (vida2 <= 0)
+        {
+            vida2 = 0;
+        }
+        printf("\nVoce recebeu um soco. Voce perde %d",danoRes);
+        printf(" de vida. A sua vida e: %d",vida2);
+        
+    }
+    else
+    {
+        danoRes = soco - rand() % 15;
+        vida2 -= danoRes;
+        vida1 -= danoRes;
+        if (vida2 <= 0)
+        {
+            vida2 = 0;
+        }
+        if (vida1 <= 0)
+        {
+            vida1 = 0;
+        }
+        printf("\nGolpe mutuo! (Onomatopeias de desenho animado)");
+        printf("\nAmbos jogadores receberam de dano: %d",danoRes);
+        printf("\nA sua vida atual e: %d",vida2);
+        printf("\nA vida atual do inimigo e: %d\n",vida1);
+    }
+}
+void chute1(int socador)
+{
+    if (socador == 0)
+        {
+        danoRes = chute - rand() % 15;
+        vida1 -= danoRes;
+        if (vida1 <= 0)
+        {
+        vida1 = 0;
+        }
+        printf("\nVoce deu um chute. O inimigo perde %d",danoRes);
+        printf(" de vida. A vida atual do inimigo e: %d",vida1);
+        }
+    else if (socador == 1)
+        {
+        danoRes = chute - rand() % 15;
+        vida2 -= danoRes;
+        if (vida2 <= 0)
+        {
+            vida2 = 0;
+        }
+        printf("\nVoce recebeu um chute. Voce perde %d",danoRes);
+        printf(" de vida. A sua vida e: %d",vida2);
+
+    }
+    else
+        {
+        danoRes = chute - rand() % 15;
+        vida2 -= danoRes;
+        vida1 -= danoRes;
+        if (vida2 <= 0)
+        {
+            vida2 = 0;
+        }
+        if (vida1 <= 0)
+        {
+            vida1 = 0;
+        }
+        printf("\nGolpe mutuo!");
+        printf("\nAmbos lutadores receberam de dano: %d",danoRes);
+        printf("\nA sua vida atual e: %d",vida2);
+        printf("\nA vida atual do inimigo e: %d\n",vida1);   
+    }
+}
+void agarrao1(int socador)
+{
+    if (socador == 0)
+    {
+    danoRes = agarrao - rand() % 15;
+    vida1 -= danoRes;
+    if (vida1 <= 0)
+    {
+    vida1 = 0;
+    }
+    printf("\nVoce deu um agarrao. O inimigo perde %d",danoRes);
+    printf(" de vida. A vida atual do inimigo e: %d",vida1);
+    }
+    else if (socador == 1)
+    {
+    danoRes = agarrao - rand() % 15;
+    vida2 -= danoRes;
+    if (vida2 <= 0)
+    {
+    vida2 = 1;
+    }
+    printf("\nVoce recebeu um agarrao. Voce perde %d",danoRes);
+    printf(" de vida. A sua vida e: %d",vida2);
+
+    }
+    else
+    {
+    danoRes = agarrao - rand() % 15;
+    vida2 -= danoRes;
+    vida1 -= danoRes;
+    if (vida2 <= 0)
+    {
+        vida2 = 0;
+    }
+    if (vida1 <= 0)
+    {
+        vida1 = 0;
+    }
+    printf("\nGolpe mutuo.");
+    printf("\nAmbos lutadores receberam de dano: %d",danoRes);
+    printf("\nA sua vida atual e: %d",vida2);
+    printf("\nA vida atual do inimigo e: %d\n",vida1);
+    }
+}
+void jogo1()
+{
+srand(time(NULL));
+printf("\n------------------------------JOGO SOMBRA------------------------------\n\n\n");
+do
+{
+
+printf("\nSelecione 1 para tentar um soco.");
+printf("\nSelecione 2 para tentar um chute.");
+printf("\nSelecione 3 para tentar agarrar.");
+printf("\nSelecione 4 para sair.\n");
+scanf("%d",&command1);
+fflush(stdin);
+switch (command1)
+{
+case 1:
+comando = rand() % 3;
+soco1(comando);
+
+break;
+
+case 2:
+comando = rand() % 3;
+chute1(comando);
+
+break;
+
+case 3:
+comando = rand() % 3;
+agarrao1(comando);
+
+break;
+
+case 4:
+
+printf("\nJogo Finalizado.");
+exit(0);
+
+}
+}
+while ( vida1 > 0 && vida2 > 0);
+{
+    if (vida1 == 0)
+    {
+    printf("\nA vida do inimigo chegou a 0.\nSoled.");
+    }
+    if (vida2 == 0)
+    {
+    printf("\nVoce foi derrotado pela sombra;");
+    }
+    if (vida1 == 0 && vida2 == 0)
+    {
+    printf("\nDouble K.O.!");
+    printf("\nBela batalha.");
+    }
+}
+
+
+
+}
+
+int main()
+{
+  int comando;
+  vida1 = 500;
+  vida2 = 500;
+  soco = 50;
+  agarrao = 80;
+  chute = 65;
+  
+  printf("\nDigite 1 para jogar e 2 para sair.\n");
+  scanf("%d",&comando);
+  fflush(stdin);
+  while (comando <= 0 || comando > 2)
+  {
+  printf("\nDigite 1 para jogar e 2 para sair.");
+  scanf("%d",&comando);
+  fflush(stdin);
+  }
+  if (comando == 1)
+  {
+  jogo1();
+  }
+  else
+  {
+   printf("Jogo finalizado.");
+  }
+}
